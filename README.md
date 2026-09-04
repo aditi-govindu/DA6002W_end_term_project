@@ -7,6 +7,19 @@ This document serves as the system design document for the development, training
 
 > NOTE: This project is was commissioned as part of the Course DA6002W under the IITM Web M.Tech Program. All rights to the code and use are reserved by the author and the DS AI community at IITM.
 
+# Results
+|index|technique|main\_state\_representation|important\_hyperparameters|local\_average\_cost|
+|---|---|---|---|---|
+|0|Tabular Q-Learning|Discretized Inv + Pipeline \(5\*5\*5\*3=375 states\)|ALPHA=0\.07, GAMMA=0\.96, EPSILON=1\.0 \(decayed to 0\.01\), EPSILON\_DECAY=0\.995|1464074\.125|
+|1|Tabular SARSA|Discretized Inv + Pipeline \(5\*5\*5\*3=375 states\)|ALPHA=0\.07, GAMMA=0\.96, EPSILON=1\.0 \(decayed to 0\.01\), EPSILON\_DECAY=0\.995|1561093\.0|
+|2|DQN|Continuous Vector \(38 dimensions\)|DQN\_LEARNING\_RATE=0\.0001, GAMMA=0\.98, EPSILON=1\.0 \(decayed to 0\.05\), EPSILON\_DECAY=0\.9995, BATCH\_SIZE=128, BUFFER\_SIZE=100000, TARGET\_UPDATE\_FREQ=500|1372177\.125|
+|3|Double DQN|Continuous Vector \(38 dimensions\)|alpha=0\.0001, gamma=0\.98, epsilon=1\.0 \(decayed to 0\.05\), epsilon\_decay=0\.9995, batch\_size=128, buffer\_size=100000, target\_update\_freq=500|1925388\.125|
+|4|PPO|Continuous Vector \(38 dimensions\)|PPO\_LEARNING\_RATE=2e-5, PPO\_GAMMA=0\.98, PPO\_GAE\_LAMBDA=0\.95, PPO\_CLIP\_EPSILON=0\.1, PPO\_EPOCHS=15, PPO\_BATCH\_SIZE=128, PPO\_STEPS\_PER\_EPISODE=50, PPO\_ENTROPY\_COEFF=0\.02|771621\.375|
+|5|A3C|Continuous Vector \(38 dimensions\)|A3C\_LEARNING\_RATE=0\.0003, A3C\_GAMMA=0\.99, A3C\_GAE\_LAMBDA=0\.95, A3C\_ENTROPY\_COEFF=0\.01, A3C\_N\_STEPS=20|493272\.5|
+|6|Reinforcement with baseline|Continuous Vector \(38 dimensions\)|REINFORCE\_ACTOR\_LR=5e-4, REINFORCE\_CRITIC\_LR=2e-3, REINFORCE\_GAMMA=0\.85, REINFORCE\_ENTROPY\_COEFF=0\.005, REINFORCE\_LR\_DECAY=0\.999, REINFORCE\_MIN\_LR=1e-6|1494586\.0|
+|7|Neural Network based SARSA|Continuous Vector \(38 dimensions\)|SARSA\_LEARNING\_RATE=0\.0005, GAMMA=0\.99, EPSILON=1\.0 \(decayed to 0\.05\), EPSILON\_DECAY=0\.998, BATCH\_SIZE=64, BUFFER\_SIZE=100000, TARGET\_UPDATE\_FREQ=200|1018061\.5|
+|8|TD\(λ\) with Eligibility Traces|Discretized Inv + Pipeline \(5\*5\*5\*3=375 states\)|ALPHA=0\.02, GAMMA=0\.99, EPSILON=1\.0 \(decayed to 0\.05\), EPSILON\_DECAY=0\.995, LAMBDA=0\.80|1016370\.625|
+
 ---
 
 ## 1. System Architecture & Module Overview
